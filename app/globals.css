@@ -10,7 +10,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 217 33% 17%;
     --popover-foreground: 210 40% 98%;
-    --primary: 199 89% 48%;
+    --primary: 199 62% 37%;
     --primary-foreground: 210 40% 98%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 199 89% 48%;
+    --ring: 199 72% 42%;
     --radius: 0.5rem;
   }
 
@@ -33,7 +33,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 199 89% 48%;
+    --primary: 199 62% 37%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -45,7 +45,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 199 89% 48%;
+    --ring: 199 72% 42%;
   }
 }
 
@@ -56,5 +56,17 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-image: 
+      radial-gradient(at 0% 0%, hsl(199, 62%, 25%) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(220, 50%, 20%) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, hsl(222, 47%, 11%) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  .light body {
+    background-image: 
+      radial-gradient(at 0% 0%, hsl(199, 62%, 95%) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(220, 50%, 90%) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, hsl(0, 0%, 100%) 0px, transparent 50%);
   }
 }

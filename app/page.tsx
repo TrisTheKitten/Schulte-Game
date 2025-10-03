@@ -62,24 +62,28 @@ export default function Home() {
   })
 
   return (
-    <main className="min-h-screen py-10 px-6">
-      <div className="max-w-5xl mx-auto">
+    <main className="min-h-screen py-8 px-4">
+      <div className="max-w-6xl mx-auto">
         <header className="relative mb-8">
-          <div className="absolute right-0 top-0 flex items-center gap-3">
-            <GameControls onNewGame={backToMenu} variant="compact" />
+          <div className="absolute right-0 top-0 flex items-center gap-2">
+            {config.gameState !== 'menu' && (
+              <GameControls onNewGame={backToMenu} variant="compact" />
+            )}
             <Button
               variant="outline"
               size="icon"
               aria-label="Open settings"
               onClick={() => setSettingsOpen(true)}
+              className="shadow-sm"
             >
               <Settings className="w-5 h-5" />
             </Button>
           </div>
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-primary/80 to-cyan-400 bg-clip-text text-transparent">
               Schulte Table
             </h1>
+            <p className="text-sm text-muted-foreground/70 mb-6">Train your focus and visual speed</p>
             {config.gameState === 'playing' && (
               <GameStats
                 time={config.seconds}
@@ -92,10 +96,14 @@ export default function Home() {
           </div>
         </header>
 
-        {config.gameState === 'menu' && <DifficultySelector onSelect={startGame} />}
+        {config.gameState === 'menu' && (
+          <div className="bg-card/50 backdrop-blur-sm rounded-3xl shadow-xl border border-border/50 p-8 mb-8">
+            <DifficultySelector onSelect={startGame} />
+          </div>
+        )}
 
-        <div className="bg-card rounded-2xl shadow-2xl p-8 mb-10 min-h-[480px] flex items-center justify-center">
-          {config.gameState === 'playing' && config.cells.length > 0 && (
+        {config.gameState === 'playing' && config.cells.length > 0 && (
+          <div className="bg-transparent backdrop-blur-sm rounded-3xl shadow-xl border border-border/50 p-6 md:p-8 mb-8">
             <GameBoard
               cells={config.cells}
               size={config.size}
@@ -103,14 +111,14 @@ export default function Home() {
               hideNumbers={config.hideNumbers}
               onCellClick={onCellClick}
             />
-          )}
-          {config.gameState === 'menu' && (
-            <div className="text-center text-muted-foreground">
-              Select a difficulty level to start playing
-            </div>
-          )}
-        </div>
-        <Instructions />
+          </div>
+        )}
+
+        {config.gameState === 'menu' && (
+          <div className="text-center mt-12">
+            <Instructions />
+          </div>
+        )}
 
         <LevelUpModal
           open={config.gameState === 'level-up'}

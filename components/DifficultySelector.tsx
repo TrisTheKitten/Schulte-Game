@@ -1,53 +1,64 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import gsap from 'gsap'
+import { motion } from 'framer-motion'
 import { RANKS } from '@/lib/progression'
+import { Zap, Brain, Flame, Rocket, Trophy, Skull, Crown, Swords } from 'lucide-react'
 
 interface DifficultySelectorProps {
   onSelect: (size: number) => void
 }
 
+const difficultyIcons: Record<string, any> = {
+  'Easy': Zap,
+  'Medium': Brain,
+  'Hard': Flame,
+  'Expert': Rocket,
+  'Master': Trophy,
+  'Extreme': Swords,
+  'Hardcore': Skull,
+  'God': Crown,
+}
+
 export function DifficultySelector({ onSelect }: DifficultySelectorProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    const buttons = containerRef.current.querySelectorAll('button')
-    
-    gsap.fromTo(
-      buttons,
-      { opacity: 0, y: 20, scale: 0.9 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.4,
-        stagger: 0.08,
-        ease: 'back.out(1.7)',
-      }
-    )
-  }, [])
-
   return (
-    <div className="text-center py-8">
-      <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
-        Select Difficulty
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="text-center py-8"
+    >
+      <h2 className="text-2xl font-semibold mb-6 text-foreground/90">
+        Choose Your Challenge
       </h2>
-      <div ref={containerRef} className="flex flex-wrap gap-4 justify-center max-w-2xl mx-auto">
-        {RANKS.map(rank => (
-          <Button
-            key={rank.size}
-            onClick={() => onSelect(rank.size)}
-            size="lg"
-            className="min-w-[160px]"
-          >
-            {rank.name} ({rank.size}×{rank.size})
-          </Button>
-        ))}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto px-4">
+        {RANKS.map((rank, index) => {
+          const Icon = difficultyIcons[rank.name] || Zap
+          return (
+            <motion.div
+              key={rank.size}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: index * 0.05,
+                ease: 'easeOut'
+              }}
+            >
+              <Button
+                onClick={() => onSelect(rank.size)}
+                className="w-full h-24 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/90 to-primary hover:from-primary hover:to-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <Icon className="w-5 h-5" />
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-semibold text-sm">{rank.name}</span>
+                  <span className="text-xs opacity-80">{rank.size}×{rank.size}</span>
+                </div>
+              </Button>
+            </motion.div>
+          )
+        })}
       </div>
-    </div>
+    </motion.div>
   )
 }

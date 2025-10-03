@@ -47,7 +47,7 @@ interface StatCardProps {
 const StatCard = forwardRef<HTMLSpanElement, StatCardProps>(
   ({ label, value }, ref) => {
     return (
-      <div className="bg-card rounded-lg px-6 py-4 min-w-[120px] text-center shadow-lg">
+      <div className="bg-card/20 backdrop-blur-md border border-border/20 rounded-lg px-6 py-4 min-w-[120px] text-center shadow-lg">
         <div className="text-sm text-primary font-medium mb-1">{label}</div>
         <span ref={ref} className="text-2xl font-bold inline-block">
           {value}

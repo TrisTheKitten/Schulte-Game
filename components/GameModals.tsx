@@ -74,7 +74,7 @@ export function LevelUpModal({
       <DialogContent className="sm:max-w-md" ref={contentRef}>
         <DialogHeader>
           <DialogTitle className="text-3xl text-center text-primary">
-            {isMaxRank ? 'Rank Mastered! 🏆' : 'Rank Up! 🎉'}
+            {isMaxRank ? 'Rank Mastered!' : 'Rank Up!'}
           </DialogTitle>
           <DialogDescription className="text-center text-lg">
             {isMaxRank ? 'You have conquered the ultimate challenge.' : 'Your training is paying off!'}
@@ -89,7 +89,7 @@ export function LevelUpModal({
             </div>
             {!isMaxRank && (
               <>
-                <div className="text-3xl text-primary font-bold">➡️</div>
+                <div className="text-3xl text-primary font-bold">→</div>
                 <div className="px-4 py-3 rounded-xl bg-primary/10 border border-primary/30 shadow-lg">
                   <div className="text-sm text-primary uppercase tracking-wide">Next Rank</div>
                   <div className="text-2xl font-bold text-primary">{nextRankName}</div>
