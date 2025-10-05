@@ -12,8 +12,9 @@ import { Instructions } from '@/components/Instructions'
 import { LevelUpModal, GameOverModal } from '@/components/GameModals'
 import { SettingsModal } from '@/components/SettingsModal'
 import { Button } from '@/components/ui/button'
-import { Settings } from 'lucide-react'
+import { Flame, Settings } from 'lucide-react'
 import { RANKS, boundRankIndex } from '@/lib/progression'
+import { GameRunSidebar } from '@/components/GameRunSidebar'
 
 export default function Home() {
   const {
@@ -28,10 +29,14 @@ export default function Home() {
     incrementTime,
     toggleHideNumbers,
     saveBestTime,
+    runHistory,
+    currentStreak,
+    maxStreak,
   } = useGameState()
 
   const [darkMode, setDarkMode] = useState(true)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [runLogOpen, setRunLogOpen] = useState(false)
 
   useTimer(config.gameState === 'playing', incrementTime)
 
@@ -72,6 +77,15 @@ export default function Home() {
             <Button
               variant="outline"
               size="icon"
+              aria-label="Open legacy log"
+              onClick={() => setRunLogOpen(true)}
+              className="shadow-sm"
+            >
+              <Flame className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
               aria-label="Open settings"
               onClick={() => setSettingsOpen(true)}
               className="shadow-sm"
@@ -85,13 +99,19 @@ export default function Home() {
             </h1>
             <p className="text-sm text-muted-foreground/70 mb-6">Train your focus and visual speed</p>
             {config.gameState === 'playing' && (
-              <GameStats
-                time={config.seconds}
-                score={config.score}
-                rankName={currentRank?.name ?? 'Rank'}
-                gridSize={config.size}
-                nextNumber={config.currentNumber}
-              />
+              <>
+                <GameStats
+                  time={config.seconds}
+                  score={config.score}
+                  rankName={currentRank?.name ?? 'Rank'}
+                  gridSize={config.size}
+                  nextNumber={config.currentNumber}
+                />
+                <div className="mt-4 flex flex-col items-center gap-1 text-sm text-muted-foreground/80">
+                  <span>Press &quot;R&quot; to restart the game</span>
+                  <span>Press &quot;Q&quot; to quit the game</span>
+                </div>
+              </>
             )}
           </div>
         </header>
@@ -149,6 +169,19 @@ export default function Home() {
           onDarkModeChange={handleDarkModeChange}
           onRestart={restartGame}
           onQuit={quitGame}
+        />
+        {runLogOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-background/60 backdrop-blur-sm"
+            onClick={() => setRunLogOpen(false)}
+          />
+        )}
+        <GameRunSidebar
+          open={runLogOpen}
+          runs={runHistory}
+          currentStreak={currentStreak}
+          maxStreak={maxStreak}
+          onClose={() => setRunLogOpen(false)}
         />
       </div>
     </main>

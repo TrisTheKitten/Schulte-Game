@@ -31,6 +31,7 @@ npm start
 - **Difficulty**: 3×3 → 7×7 with progressive increase
 - **Scoring**: +10 correct, −5 wrong
 - **Timer & Best Times** per grid size (localStorage)
+- **Legacy Log Sidebar** with animated run history, streak tracking, and recap stats (localStorage)
 - **Settings Modal** (top-right button):
   - Hide numbers after clicking
   - Dark/Light mode
@@ -39,6 +40,7 @@ npm start
   - R: Restart (during play)
   - Q: Quit (during play)
   - Space/Escape: Back to menu
+  - On-screen reminders during gameplay for restart and quit
 
 ## Project Structure
 ```

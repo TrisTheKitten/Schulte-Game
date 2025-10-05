@@ -17,7 +17,7 @@ export function GameSettings({
   onDarkModeChange,
 }: GameSettingsProps) {
   return (
-    <div className="bg-card rounded-lg p-6 shadow-lg mb-8">
+    <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-border/40 mb-8">
       <h3 className="text-xl font-semibold text-primary mb-6 flex items-center gap-2 justify-center">
         <Settings className="w-5 h-5" />
         Settings
@@ -46,7 +46,7 @@ interface SettingItemProps {
 
 function SettingItem({ label, checked, onCheckedChange }: SettingItemProps) {
   return (
-    <div className="flex items-center justify-between bg-accent p-4 rounded-lg hover:-translate-y-0.5 transition-transform">
+    <div className="flex items-center justify-between bg-card border border-border/40 p-4 rounded-lg hover:shadow-md hover:-translate-y-0.5 transition-all">
       <span className="font-medium">{label}</span>
       <Switch checked={checked} onCheckedChange={onCheckedChange} />
     </div>

@@ -12,7 +12,13 @@ interface GameStatsProps {
   nextNumber: number
 }
 
-export function GameStats({ time, score, rankName, gridSize, nextNumber }: GameStatsProps) {
+export function GameStats({
+  time,
+  score,
+  rankName,
+  gridSize,
+  nextNumber,
+}: GameStatsProps) {
   const scoreRef = useRef<HTMLSpanElement>(null)
   const prevScore = useRef(score)
 
