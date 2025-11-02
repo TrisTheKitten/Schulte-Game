@@ -5,25 +5,25 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-xs font-bold uppercase tracking-wider pixel-borders transition-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0",
+        default: "bg-primary text-primary-foreground hover:brightness-110 active:translate-y-1 border-4 border-black",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-lg shadow-destructive/30 hover:shadow-xl hover:shadow-destructive/40 hover:-translate-y-0.5 active:translate-y-0",
+          "bg-destructive text-destructive-foreground hover:brightness-110 active:translate-y-1 border-4 border-black",
         outline:
-          "border-2 border-primary bg-transparent text-primary hover:bg-primary/10 hover:-translate-y-0.5 active:translate-y-0",
+          "border-4 border-primary bg-background text-primary hover:bg-primary/20 active:translate-y-1",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-accent text-accent-foreground hover:brightness-110 active:translate-y-1 border-4 border-black",
+        ghost: "hover:bg-accent/20 hover:text-accent-foreground border-2 border-transparent",
+        link: "text-primary underline-offset-4 hover:underline border-0",
       },
       size: {
-        default: "h-10 px-7 py-2",
-        sm: "h-9 rounded-full px-3",
-        lg: "h-11 rounded-full px-8",
-        icon: "h-10 w-10",
+        default: "h-12 px-6 py-3",
+        sm: "h-10 px-4 py-2",
+        lg: "h-14 px-8 py-4",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {

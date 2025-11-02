@@ -69,35 +69,40 @@ export default function Home() {
   return (
     <main className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto">
-        <header className="relative mb-8">
-          <div className="absolute right-0 top-0 flex items-center gap-2">
-            {config.gameState !== 'menu' && (
-              <GameControls onNewGame={backToMenu} variant="compact" />
-            )}
-            <Button
-              variant="outline"
-              size="icon"
-              aria-label="Open legacy log"
-              onClick={() => setRunLogOpen(true)}
-              className="shadow-sm"
-            >
-              <Flame className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              aria-label="Open settings"
-              onClick={() => setSettingsOpen(true)}
-              className="shadow-sm"
-            >
-              <Settings className="w-5 h-5" />
-            </Button>
+        <header className="mb-8">
+          <div className="flex justify-between items-start gap-4 mb-6">
+            <div className="flex-1" />
+            <div className="flex-shrink-0 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-primary/80 to-cyan-400 bg-clip-text text-transparent">
+                Schulte Table
+              </h1>
+              <p className="text-sm text-muted-foreground/70">Train your focus and visual speed</p>
+            </div>
+            <div className="flex-1 flex items-start justify-end gap-2">
+              {config.gameState !== 'menu' && (
+                <GameControls onNewGame={backToMenu} variant="compact" />
+              )}
+              <Button
+                variant="outline"
+                size="icon"
+                aria-label="Open legacy log"
+                onClick={() => setRunLogOpen(true)}
+                className="shadow-sm"
+              >
+                <Flame className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                aria-label="Open settings"
+                onClick={() => setSettingsOpen(true)}
+                className="shadow-sm"
+              >
+                <Settings className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-primary/80 to-cyan-400 bg-clip-text text-transparent">
-              Schulte Table
-            </h1>
-            <p className="text-sm text-muted-foreground/70 mb-6">Train your focus and visual speed</p>
             {config.gameState === 'playing' && (
               <>
                 <GameStats
